@@ -1,0 +1,54 @@
+.row {
+  // it is an industry standard to make grid width of 1140 px
+  max-width: $grid-width;
+  background-color: lightblue;
+  margin: 0 auto;
+
+  // apply to all rows except the last child
+  &:not(:last-child) {
+    margin-bottom: $grid-gutter-vertical;
+  }
+
+  @include clearfix;
+
+  // it will select all classes that start with (class^) col- and apply given styles
+  // class* - contains given phrase
+  // class$ - ends with given phrase
+  [class^="col-"] {
+    background-color: orangered;
+    float: left;
+    &:not(:last-child) {
+      margin-right: $grid-gutter-horizontal;
+    }
+  }
+
+  .col-1-of-2 {
+    width: calc((100% - #{$grid-gutter-horizontal}) / 2);
+  }
+
+  .col-1-of-3 {
+    width: calc((100% - 2 * #{$grid-gutter-horizontal}) / 3);
+  }
+
+  .col-2-of-3 {
+    width: calc(
+      2 * ((100% - 2 * #{$grid-gutter-horizontal}) / 3) + #{$grid-gutter-horizontal}
+    );
+  }
+
+  .col-1-of-4 {
+    width: calc((100% - 3 * #{$grid-gutter-horizontal}) / 4);
+  }
+
+  .col-2-of-4 {
+    width: calc(
+      2 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + #{$grid-gutter-horizontal}
+    );
+  }
+
+  .col-3-of-4 {
+    width: calc(
+      3 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + 2 * #{$grid-gutter-horizontal}
+    );
+  }
+}
