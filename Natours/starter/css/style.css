@@ -1,19 +1,144 @@
-/*
-COLORS:
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(10rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-*/
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  80% {
+    transform: translateY(-0.3rem); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* fix for animation vertical shake issue */
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-in-out; }
+
+.btn {
+  /** link is a pseudo class, link is a special state of a selector when */
+  /** defines a child of a btn class */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    transition: all 0.2s;
+    border-radius: 10rem;
+    position: relative;
+    font-size: 1.6rem; }
+  .btn:hover {
+    transform: translateY(-0.343m);
+    /* x, y, blur, color */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn::after {
+    content: "";
+    /* must be set or it won't appear */
+    display: inline-block;
+    /* must be set or it won't appear */
+    height: 100%;
+    /** match parent -> btn class */
+    width: 100%;
+    /** match parent -> btn class */
+    border-radius: 10rem;
+    position: absolute;
+    /** relative to btn, we need to add relative to btn */
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /** behind the main btn element */
+    transition: all 0.4s; }
+  .btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /** will apply the state for 0% state before animation starts */
+    animation-fill-mode: backwards; }
+
+.header {
+  /* 95% of available screen height area */
+  height: 95vh;
+  /* on top we have linear gradient coming from top:left to right, bottom; then url, the first one is always on top */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* will stretch out to fill the viewport */
+  background-size: cover;
+  background-position: top;
+  /**
+      this goes clockwise from top left corner 
+      polygon(x y, x y, x y, x y);
+      */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+  /** centering the elements of the box */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
 
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
-}
+  box-sizing: inherit; }
 
 html {
   /*
@@ -21,181 +146,14 @@ html {
   We use percentages instead of px to make it respect user settings.
   By default 100% is 16 px, but user may increase it in settings.
   */
-  font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5% -> 1rem = 10px */
-}
+  font-size: 62.5%;
+  /* 1rem = 10px; 10px/16px = 62.5% -> 1rem = 10px */ }
 
 body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.7;
-  color: #777;
   padding: 3rem;
   /*
   content-box: default, width and height are only content
   border-box: width and height include content, padding and border
   see: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
   */
-  box-sizing: border-box;
-}
-
-.header {
-  /* 95% of available screen height area */
-  height: 95vh;
-  /* on top we have linear gradient coming from top:left to right, bottom; then url, the first one is always on top */
-  background-image: linear-gradient(to right bottom, #7ed56fd2, #28b485d2),
-    url(../img/hero.jpg);
-  /* will stretch out to fill the viewport */
-  background-size: cover;
-  background-position: top;
-  /**
-    this goes clockwise from top left corner 
-    polygon(x y, x y, x y, x y);
-    */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative;
-}
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
-
-.header__logo {
-  height: 3.5rem;
-}
-
-/** centering the elements of the box */
-.header__text-box {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  backface-visibility: hidden; /* fix for animation vertical shake issue */
-  margin-bottom: 6rem;
-}
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-}
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-in-out;
-}
-
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem);
-  }
-  80% {
-    transform: translateX(10rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem);
-  }
-  80% {
-    transform: translateX(-1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-  80% {
-    transform: translateY(-0.3rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/** link is a pseudo class, link is a special state of a selector when */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  transition: all 0.2s;
-  border-radius: 10rem;
-  position: relative;
-  font-size: 1.6rem;
-}
-
-.btn:hover {
-  transform: translateY(-0.343m);
-  /* x, y, blur, color */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-}
-
-.btn--white {
-  background-color: #fff;
-  color: #777;
-}
-
-/** defines a child of a btn class */
-.btn::after {
-  content: ""; /* must be set or it won't appear */
-  display: inline-block; /* must be set or it won't appear */
-  height: 100%; /** match parent -> btn class */
-  width: 100%; /** match parent -> btn class */
-  border-radius: 10rem;
-  position: absolute; /** relative to btn, we need to add relative to btn */
-  top: 0;
-  left: 0;
-  z-index: -1; /** behind the main btn element */
-  transition: all 0.4s;
-}
-
-.btn--white::after {
-  background-color: #fff;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--animated {
-  animation: moveInBottom 0.5s ease-out 0.75s;
-  /** will apply the state for 0% state before animation starts */
-  animation-fill-mode: backwards;
-}
+  box-sizing: border-box; }
