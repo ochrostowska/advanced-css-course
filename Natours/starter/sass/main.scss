@@ -1,0 +1,41 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/button";
+
+@import "layout/header";
+
+@import "pages/home";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /*
+  All the rem values are calculated based on the font size of the root element, which is the html element.
+  We use percentages instead of px to make it respect user settings.
+  By default 100% is 16 px, but user may increase it in settings.
+  */
+  font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5% -> 1rem = 10px */
+}
+
+body {
+  padding: 3rem;
+  /*
+  content-box: default, width and height are only content
+  border-box: width and height include content, padding and border
+  see: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+  */
+  box-sizing: border-box;
+}

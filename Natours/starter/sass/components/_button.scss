@@ -1,0 +1,59 @@
+.btn {
+  /** link is a pseudo class, link is a special state of a selector when */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    transition: all 0.2s;
+    border-radius: 10rem;
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-0.343m);
+    /* x, y, blur, color */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /** defines a child of a btn class */
+  &::after {
+    content: ""; /* must be set or it won't appear */
+    display: inline-block; /* must be set or it won't appear */
+    height: 100%; /** match parent -> btn class */
+    width: 100%; /** match parent -> btn class */
+    border-radius: 10rem;
+    position: absolute; /** relative to btn, we need to add relative to btn */
+    top: 0;
+    left: 0;
+    z-index: -1; /** behind the main btn element */
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /** will apply the state for 0% state before animation starts */
+    animation-fill-mode: backwards;
+  }
+}

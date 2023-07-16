@@ -1,0 +1,39 @@
+.header {
+  /* 95% of available screen height area */
+  height: 95vh;
+  /* on top we have linear gradient coming from top:left to right, bottom; then url, the first one is always on top */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  /* will stretch out to fill the viewport */
+  background-size: cover;
+  background-position: top;
+  /**
+      this goes clockwise from top left corner 
+      polygon(x y, x y, x y, x y);
+      */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  /** centering the elements of the box */
+  &__text-box {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
