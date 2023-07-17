@@ -1,7 +1,6 @@
 .row {
   // it is an industry standard to make grid width of 1140 px
   max-width: $grid-width;
-  background-color: lightblue;
   margin: 0 auto;
 
   // apply to all rows except the last child
@@ -15,7 +14,6 @@
   // class* - contains given phrase
   // class$ - ends with given phrase
   [class^="col-"] {
-    background-color: orangered;
     float: left;
     &:not(:last-child) {
       margin-right: $grid-gutter-horizontal;
