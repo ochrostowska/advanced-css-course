@@ -1,16 +1,31 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 html {
-    // This defines what 1rem is
+  // This defines what 1rem is => 10px/16px = 62.5% -> 1rem = 10px
+  font-size: 62.5%;
+
+  // we want the 1 rem to be 9px on landscape-tablets; 9px/16px = 62.5% -> 1rem = 9px
+  @include respond(tab-land) {
     font-size: 62.5%;
+  }
+
+  // we want the 1 rem to be 8px on phones and portrait-tablets; 8px/16px = 50% -> 1rem = 8px
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  // we want the 1 rem to be 9px on big desktops; 12px/16px = 75% -> 1rem = 12px
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
 }
 
 body {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
