@@ -76,22 +76,26 @@
     }
   }
 
+  // moves the icon::before element up upon button hover
   &__button:hover &__icon::before {
     top: -1rem;
   }
-
+  // moves the icon::after element up upon button hover
   &__button:hover &__icon::after {
     top: 1rem;
   }
 
+  // TRANSITION FROM HAMBUREGER TO X
+  // makes the icon element transparent upon button click
   &__checkbox:checked ~ &__button &__icon {
     background-color: transparent;
   }
-
+  // makes the icon::before rotate 135deg and resets it's offset upon button click
   &__checkbox:checked ~ &__button &__icon::before {
     top: 0;
     transform: rotate(135deg);
   }
+  // makes the icon::before rotate -135deg and resets it's offset upon button click
   &__checkbox:checked ~ &__button &__icon::after {
     top: 0;
     transform: rotate(-135deg);
@@ -142,10 +146,12 @@
     }
   }
 
+  // when checkbox is checked, the background scales 80x
   &__checkbox:checked ~ &__background {
     transform: scale(80);
   }
 
+  // when checkbox is checked, the navigation is shown
   &__checkbox:checked ~ &__nav {
     width: 100%;
     opacity: 1;
