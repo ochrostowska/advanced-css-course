@@ -10,6 +10,13 @@
   visibility: hidden;
   transition: all 0.3s;
 
+  // We ask the browser if it supports given properties and values
+  // if it supports it, props inside the block will be applied
+  @supports (-webkit-backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.3);
+  }
+
   &__content {
     @include absCenter;
 
