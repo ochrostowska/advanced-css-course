@@ -119,8 +119,18 @@
                     In case browser doesn't support srcset we use src as a fallback
                     but srcset has precedence over src
                 -->
-              <img
+
+              <!-- We need to convert px to em, so: 900/16 = 56.25em and 600/16 = 37.5em -->
+              <!-- <img
                 sizes="(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px"
+                srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
+                src="img/nat-1-large.jpg"
+                alt="Photo 1"
+                class="composition__photo composition__photo--p1"
+              /> -->
+
+              <img
+                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                 srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
                 src="img/nat-1-large.jpg"
                 alt="Photo 1"
@@ -128,7 +138,7 @@
               />
 
               <img
-                sizes="(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px"
+                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                 srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w"
                 src="img/nat-2-large.jpg"
                 alt="Photo 2"
@@ -136,7 +146,7 @@
               />
 
               <img
-                sizes="(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px"
+                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                 srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w"
                 src="img/nat-3-large.jpg"
                 alt="Photo 3"
