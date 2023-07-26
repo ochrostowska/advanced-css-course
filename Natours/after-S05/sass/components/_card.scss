@@ -184,7 +184,12 @@
     font-weight: 100;
   }
 
-  @include respond(tab-port) {
+  // @include respond(tab-port) {
+
+  // we need to use full media query, because
+  // we want this to apply also for devices that do not have
+  //  the possibility to hover
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto;
     border-radius: 3px;
     background-color: $color-white;
